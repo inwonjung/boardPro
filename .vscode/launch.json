@@ -1,0 +1,14 @@
+{
+  "configurations": [
+    {
+      "type": "java",
+      "name": "Spring Boot-PotfolioApplication<potfolio>",
+      "request": "launch",
+      "cwd": "${workspaceFolder}",
+      "mainClass": "com.project.potfolio.PotfolioApplication",
+      "projectName": "potfolio",
+      "args": "",
+      "envFile": "${workspaceFolder}/.env"
+    }
+  ]
+}
