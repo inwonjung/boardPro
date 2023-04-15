@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.project.potfolio.memberInfo.mapper.MemberMapper">
+    <insert id="insertMemberInfo">
+        INSERT INTO member_info
+        (mi_id, mi_pwd, mi_name, mi_nickname, mi_phone, mi_email)
+        VALUES (#{id}, #{pwd}, #{name}, #{nickname}, #{phone}, #{email});
+    </insert>
+    <select id="isExistMemberId" resultType="java.lang.Boolean">
+        select count(*) = 1 from member_info where mi_id = #{id}
+    </select>
+</mapper>
