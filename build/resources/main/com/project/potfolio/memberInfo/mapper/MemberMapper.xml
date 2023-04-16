@@ -10,4 +10,21 @@
     <select id="isExistMemberId" resultType="java.lang.Boolean">
         select count(*) = 1 from member_info where mi_id = #{id}
     </select>
+    <select id="loginMember" resultType="com.project.potfolio.memberInfo.dao.response.MemberLoginInfoResponseDAO">
+        select mi_seq as no, mi_id as id, mi_name as name, mi_nickname as nickname, mi_status as status from member_info
+        where mi_id = #{id} and mi_pwd = #{pwd}
+    </select>
+    <update id="updateMemberInfo">
+        update member_info
+        set
+            mi_id = #{id}
+            <if test="data.pwd != null">, mi_pwd = #{data.pwd}</if>
+            <if test="data.nickname != null">, mi_nickname = #{data.nickname}</if>
+            <if test="data.phone != null">, mi_phone = #{data.phone}</if>
+            <if test="data.email != null">, mi_email = #{data.email}</if>
+        where mi_id = #{id}
+    </update>
+    <delete id="deleteMemberInfo">
+        delete from member_info where mi_id = #{id}
+    </delete>
 </mapper>
