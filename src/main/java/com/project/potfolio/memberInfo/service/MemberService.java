@@ -1,11 +1,9 @@
 package com.project.potfolio.memberInfo.service;
 
 import com.project.potfolio.memberInfo.dao.request.MemberLoginDAO;
-import com.project.potfolio.memberInfo.dao.response.MemberLoginInfoResponseDAO;
-import com.project.potfolio.memberInfo.dao.response.MemberLoginResponseDAO;
+import com.project.potfolio.memberInfo.dao.response.*;
 import com.project.potfolio.memberInfo.mapper.MemberMapper;
 import com.project.potfolio.memberInfo.dao.request.MemberInsertDAO;
-import com.project.potfolio.memberInfo.dao.response.MemberResponseDAO;
 import com.project.potfolio.utils.AESAlgorithm;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -165,6 +163,23 @@ public class MemberService {
                 .status(true)
                 .message("회원 정보 삭제 완료")
                 .code(HttpStatus.OK)
+                .build();
+    }
+
+    // 회원 상세 정보 조회
+    public MemberDetailResponseDAO getMemberDetailInfo(@PathVariable String id){
+        if(!memberMapper.isExistMemberId(id)){
+            return MemberDetailResponseDAO.builder()
+                    .status(false)
+                    .message("회원 정보를 찾을 수 없습니다.")
+                    .code(HttpStatus.BAD_REQUEST)
+                    .build();
+        }
+        return MemberDetailResponseDAO.builder()
+                .status(true)
+                .message("회원 상세 정보 조회!")
+                .code(HttpStatus.OK)
+                .info(memberMapper.getMemberDetailInfo(id))
                 .build();
     }
 }

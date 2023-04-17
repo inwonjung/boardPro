@@ -1,6 +1,7 @@
 package com.project.potfolio.memberInfo.api;
 
 import com.project.potfolio.memberInfo.dao.request.MemberLoginDAO;
+import com.project.potfolio.memberInfo.dao.response.MemberDetailResponseDAO;
 import com.project.potfolio.memberInfo.dao.response.MemberLoginResponseDAO;
 import com.project.potfolio.memberInfo.service.MemberService;
 import com.project.potfolio.memberInfo.dao.request.MemberInsertDAO;
@@ -44,6 +45,13 @@ public class MemberAPIController {
     @DeleteMapping("/{id}")
     public ResponseEntity<MemberResponseDAO> deleteMemberInfo(@PathVariable String id) throws Exception{
         MemberResponseDAO response = memberService.deleteMemberInfo(id);
+        return new ResponseEntity<>(response, response.getCode());
+    }
+
+    @ApiOperation(value = "회원 상세정보 조회", notes = "회원 상세정보 조회 API")
+    @GetMapping("/{id}")
+    public ResponseEntity<MemberDetailResponseDAO> getMemberDetailInfo(@PathVariable String id){
+        MemberDetailResponseDAO response = memberService.getMemberDetailInfo(id);
         return new ResponseEntity<>(response, response.getCode());
     }
 }

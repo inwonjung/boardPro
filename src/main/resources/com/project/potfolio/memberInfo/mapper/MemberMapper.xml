@@ -27,4 +27,10 @@
     <delete id="deleteMemberInfo">
         delete from member_info where mi_id = #{id}
     </delete>
+    <select id="getMemberDetailInfo" resultType="com.project.potfolio.memberInfo.dao.response.MemberBasicInfoDAO">
+        select
+            mi_id as id, mi_name as name, mi_nickname as nickname, mi_phone as phone, mi_email as email,
+            mi_total_report as report, mi_grade as grade, mi_total_recommend as recommend from member_info
+            where mi_id = #{id}
+    </select>
 </mapper>
